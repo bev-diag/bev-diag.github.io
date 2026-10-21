@@ -1,0 +1,228 @@
+<!doctype html><html><head><meta name="robots" content="noindex"><link rel="icon" href="../assets/icon.png"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Leaf AZE0 · raport baterii</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f4f4f4;--panel:#ffffff;--panel-2:#e8e8e8;--ink:#161616;--ink-2:#525252;--ink-3:#6f6f6f;
+  --line:#e0e0e0;--line-strong:#8d8d8d;--grid:#e0e0e0;--accent:#0f62fe;
+  --s1:#6929c4;--s2:#1192e8;--s3:#005d5d;--s4:#9f1853;
+  --good:#0e6027;--good-bg:#a7f0ba;--warn:#684e00;--warn-bg:#fcf4d6;--bad:#a2191f;--bad-bg:#ffd7d9;--info:#002d9c;--info-bg:#d0e2ff;
+  --band:rgba(15,98,254,.06);
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Menlo,"DejaVu Sans Mono",Courier,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;--bg:#161616;--panel:#262626;--panel-2:#393939;--ink:#f4f4f4;--ink-2:#c6c6c6;--ink-3:#a8a8a8;
+  --line:#393939;--line-strong:#6f6f6f;--grid:#393939;--accent:#78a9ff;
+  --s1:#8a3ffc;--s2:#33b1ff;--s3:#08bdba;--s4:#ff7eb6;
+  --good:#6fdc8c;--good-bg:#044317;--warn:#f1c21b;--warn-bg:#302400;--bad:#ffb3b8;--bad-bg:#520408;--info:#a6c8ff;--info-bg:#001d6c;--band:rgba(120,169,255,.08);}}
+:root[data-theme="dark"]{
+  color-scheme:dark;--bg:#161616;--panel:#262626;--panel-2:#393939;--ink:#f4f4f4;--ink-2:#c6c6c6;--ink-3:#a8a8a8;
+  --line:#393939;--line-strong:#6f6f6f;--grid:#393939;--accent:#78a9ff;
+  --s1:#8a3ffc;--s2:#33b1ff;--s3:#08bdba;--s4:#ff7eb6;
+  --good:#6fdc8c;--good-bg:#044317;--warn:#f1c21b;--warn-bg:#302400;--bad:#ffb3b8;--bad-bg:#520408;--info:#a6c8ff;--info-bg:#001d6c;--band:rgba(120,169,255,.08);}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.43;letter-spacing:.16px}
+.topbar{background:#161616;color:#f4f4f4;height:48px;display:flex;align-items:center;gap:8px;padding:0 16px;border-bottom:1px solid #393939}
+.topbar b{font-weight:600}.topbar span{color:#c6c6c6}
+.wrap{max-width:1056px;margin:0 auto;padding-inline:20px;padding-block:32px 64px;display:flex;flex-direction:column;gap:32px}
+h1,h2,h3{font-family:var(--body);margin:0;text-wrap:balance;letter-spacing:0}
+h1{font-size:clamp(32px,5vw,42px);font-weight:300;line-height:1.19}
+h2{font-size:28px;font-weight:400;line-height:1.29}
+h3{font-size:16px;font-weight:600;line-height:1.5}
+p{margin:0;max-width:68ch}
+.eyebrow{font-size:12px;letter-spacing:.32px;color:var(--ink-2)}
+.muted{color:var(--ink-2)}.small{font-size:13px;color:var(--ink-3)}
+header{display:flex;flex-direction:column;gap:14px;border-bottom:1px solid var(--line);padding-bottom:24px}
+.meta{display:flex;flex-wrap:wrap;gap:16px 40px;font-size:12px;letter-spacing:.32px;color:var(--ink-2)}
+.meta span{display:flex;flex-direction:column;gap:2px}
+.meta b{font-size:14px;font-weight:400;letter-spacing:.16px;color:var(--ink);font-variant-numeric:tabular-nums}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;background:var(--panel);border-left:3px solid var(--good);padding:16px 16px 16px 13px}
+.verdict.warn{border-left-color:var(--warn)}.verdict.bad{border-left-color:var(--bad)}
+.verdict p{font-size:16px;line-height:1.5}
+.pill{display:inline-flex;align-items:center;border-radius:24px;font-size:12px;padding:3px 8px;min-height:24px;letter-spacing:.32px;white-space:nowrap}
+.pill.good{background:var(--good-bg);color:var(--good)}.pill.warn{background:var(--warn-bg);color:var(--warn)}
+.pill.bad{background:var(--bad-bg);color:var(--bad)}.pill.info{background:var(--info-bg);color:var(--info)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+.kpi{background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:4px}
+.kpi .l{font-size:12px;letter-spacing:.32px;color:var(--ink-2)}
+.kpi .v{font-size:36px;font-weight:300;line-height:1;font-variant-numeric:tabular-nums}
+.kpi .v small{font-size:16px;font-weight:400;color:var(--ink-2);margin-left:3px}
+.kpi .n{font-size:12px;color:var(--ink-3)}
+section{display:flex;flex-direction:column;gap:16px}
+.sec-head{display:flex;flex-direction:column;gap:6px}
+.chart-card{background:var(--panel);padding:16px;display:flex;flex-direction:column;gap:8px}
+.chart-card .cap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.chart-box{position:relative;height:280px}.chart-box.tall{height:330px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:2px;display:inline-block}
+.legend i.band{height:10px;background:var(--band);border:1px solid var(--line)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.findings{display:grid;border-top:1px solid var(--line-strong)}
+.finding{display:grid;grid-template-columns:180px 1fr;gap:16px;padding:16px;background:var(--panel);border-bottom:1px solid var(--line)}
+.finding .k{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.finding .k strong{font-size:16px;font-weight:600}
+.table-wrap{overflow-x:auto;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line)}
+th{background:var(--panel-2);font-size:14px;font-weight:600;border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+ol.recs{margin:0;padding:0;list-style:none;counter-reset:r;display:flex;flex-direction:column;border-top:1px solid var(--line-strong)}
+ol.recs li{counter-increment:r;display:grid;grid-template-columns:44px 1fr;gap:10px;padding:16px;background:var(--panel);border-bottom:1px solid var(--line)}
+ol.recs li::before{content:counter(r,decimal-leading-zero);font-family:var(--mono);color:var(--accent);font-size:13px;padding-top:3px}
+ol.recs b{font-weight:600}
+footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:18px;display:flex;flex-direction:column;gap:6px}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.finding{grid-template-columns:1fr;gap:6px}.verdict{grid-template-columns:1fr}.chart-box{height:240px}.chart-box.tall{height:280px}}
+</style>
+
+<div class="topbar"><b>BEV Diag</b><span>raport baterii</span></div>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Przykładowy raport · diagnostyka baterii trakcyjnej</div>
+  <h1>Nissan Leaf AZE0 24 kWh — stan baterii po teście obciążeniowym</h1>
+  <div class="meta"><span>VIN <b>SJNFAAZE0U6XXXXXX</b></span><span>Log <b>09.2026, 22:19–22:45</b></span><span>Przebieg <b>ok. 139 tys. km</b></span><span>Odcinek testu <b>9 km, 2 przejazdy</b></span><span>Próbki <b>192, co ~8 s</b></span></div>
+</header>
+
+<div class="verdict"><span class="pill good">Stan dobry</span><p>Pakiet ma około 77% pierwotnej pojemności, czyli około 17,6 kWh brutto. To główne ograniczenie tej baterii i przekłada się bezpośrednio na zasięg. Ogniwa są przy tym bardzo dobrze wyrównane: 13 mV rozrzutu w spoczynku, a przy dziewięciu szarpnięciach po 208–247 A (do 93 kW) żadna para nie spadła wyraźnie poniżej reszty.</p></div>
+
+<div class="kpis">
+  <div class="kpi"><span class="l">SOH (BMS)</span><span class="v">76,8<small>%</small></span><span class="n">AHr 50,2 Ah, nowy pakiet ~66 Ah</span></div>
+  <div class="kpi"><span class="l">Pojemność</span><span class="v">17,6<small>kWh</small></span><span class="n">brutto; użytkowo ok. 15,5–16,5 kWh</span></div>
+  <div class="kpi"><span class="l">Rozrzut ogniw</span><span class="v">13<small>mV</small></span><span class="n">w spoczynku; przy ~240 A od 27 do 88 mV</span></div>
+  <div class="kpi"><span class="l">Rezystancja pakietu</span><span class="v">96<small>mΩ</small></span><span class="n">przy 20–21 °C; ~1,0 mΩ na parę ogniw</span></div>
+  <div class="kpi"><span class="l">Hx</span><span class="v">65,6<small>%</small></span><span class="n">65,57 → 65,84 w trakcie testu</span></div>
+  <div class="kpi"><span class="l">Moc szczytowa</span><span class="v">93<small>kW</small></span><span class="n">247 A; odzysk do 12 kW</span></div>
+  <div class="kpi"><span class="l">Temperatura pakietu</span><span class="v">20–22<small>°C</small></span><span class="n">otoczenie 17,5 → 13 °C</span></div>
+  <div class="kpi"><span class="l">Ładowania QC / AC</span><span class="v">137<small>/ 5684</small></span><span class="n">97,6% ładowań prądem przemiennym</span></div>
+</div>
+
+<section>
+  <div class="sec-head"><div class="eyebrow">Przebieg testu</div><h2>Dwa przejazdy z serią pełnych przyspieszeń</h2><p class="muted">Log zaczyna się przy podłączonej ładowarce i SOC 97%. Po 10 minutach postoju samochód rusza (22:29), zatrzymuje się na nieco ponad minutę (22:35–22:37) i wraca do punktu startu o 22:45. W tym czasie było dziewięć impulsów 208–247 A. Pobór netto to 2,5 kWh na 9 km, co przy takim stylu jazdy nie mówi nic o zwykłym zużyciu.</p></div>
+  <div class="chart-card"><div class="legend"><span><i style="background:var(--s1)"></i>Moc pakietu (kW), dodatnia = rozładowanie</span><span><i class="band"></i>Przejazd testowy</span></div>
+  <div class="chart-box tall"><canvas id="cPower" role="img" aria-label="Moc pakietu w czasie; impulsy do 93 kW w trakcie dwóch przejazdów"></canvas></div></div>
+  <span class="small">Dystans z licznika 9 km, z prędkości 8,7 km, z GPS 9,4 km. Źródła są zgodne.</span>
+</section>
+
+<section>
+  <div class="sec-head"><div class="eyebrow">Napięcie i stan naładowania</div><h2>Od 97% do 82% SOC</h2><p class="muted">Napięcie spoczynkowe spadło z 396 V do 385 V, a pod największym obciążeniem chwilowo do 362 V. Test obejmuje tylko górny zakres naładowania.</p></div>
+  <div class="grid2">
+    <div class="chart-card"><div class="legend"><span><i style="background:var(--s1)"></i>Napięcie pakietu (V)</span></div><div class="chart-box"><canvas id="cVolts" role="img" aria-label="Napięcie pakietu w czasie"></canvas></div></div>
+    <div class="chart-card"><div class="legend"><span><i style="background:var(--s1)"></i>SOC wg BMS (%)</span></div><div class="chart-box"><canvas id="cSoc" role="img" aria-label="SOC w czasie"></canvas></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><div class="eyebrow">Balans ogniw</div><h2>Rozrzut rośnie tylko pod dużym prądem</h2><p class="muted">W spoczynku różnica między najwyższą a najniższą parą to 13 mV na początku i na końcu. Dwa pojedyncze odczyty, 257 mV o 22:31:36 i 124 mV o 22:33:29, przypadają na gwałtowne zmiany prądu, kiedy część ogniw została odczytana jeszcze pod innym obciążeniem niż reszta. To artefakty próbkowania.</p></div>
+  <div class="chart-card"><div class="legend"><span><i style="background:var(--s2)"></i>Rozrzut max−min (mV)</span><span><i class="band"></i>Przejazd testowy</span></div><div class="chart-box"><canvas id="cDiff" role="img" aria-label="Rozrzut napięć ogniw w czasie"></canvas></div></div>
+  <div class="chart-card"><div class="legend"><span><i style="background:var(--s1)"></i>Prąd pakietu (A), dodatni = rozładowanie</span><span><i class="band"></i>Przejazd testowy</span></div><div class="chart-box"><canvas id="cAmps" role="img" aria-label="Prąd pakietu w czasie"></canvas></div></div>
+  <div class="chart-card"><div class="cap"><h3>Odchyłka każdej z 96 par od średniej</h3><div class="legend"><span><i style="background:var(--s3)"></i>Spoczynek (mediana z 10 min przed jazdą)</span><span><i style="background:var(--s2)"></i>Szczyt 247 A, 22:31:28</span></div></div>
+  <div class="chart-box tall"><canvas id="cCells" role="img" aria-label="Odchyłki napięć 96 par ogniw od średniej w spoczynku i przy szczycie prądu"></canvas></div>
+  <span class="small">Przy szczycie najniżej jest para 80 (56 mV poniżej średniej). W spoczynku żadna para nie odbiega o więcej niż 8 mV.</span></div>
+</section>
+
+<section>
+  <div class="sec-head"><div class="eyebrow">Rezystancja wewnętrzna</div><h2>Około 96 mΩ przy 20 °C</h2><p class="muted">Dopasowanie V = a + R·I + c·SOC do wszystkich 192 próbek. Osobno dla przejazdów wychodzi 83 i 96 mΩ. Napięcie na wykresie jest sprowadzone do średniego SOC, żeby spadek SOC nie mieszał się ze spadkiem na rezystancji.</p></div>
+  <div class="chart-card"><div class="legend"><span><i style="background:var(--s1)"></i>Próbka</span><span><i style="background:var(--s2)"></i>Dopasowanie</span></div><div class="chart-box tall"><canvas id="cIR" role="img" aria-label="Napięcie w funkcji prądu z dopasowaną prostą"></canvas></div></div>
+</section>
+
+<section>
+  <div class="sec-head"><div class="eyebrow">Temperatura</div><h2>Pakiet ogrzał się o mniej niż 1 °C</h2><p class="muted">Czujnik T3 w tym pakiecie nie występuje. Temperatura otoczenia jest wyliczona z odczytu w °F.</p></div>
+  <div class="chart-card"><div class="legend"><span><i style="background:var(--s1)"></i>T1</span><span><i style="background:var(--s2)"></i>T2</span><span><i style="background:var(--s3)"></i>T4</span><span><i style="background:var(--s4)"></i>Otoczenie</span></div><div class="chart-box"><canvas id="cTemp" role="img" aria-label="Temperatury pakietu i otoczenia"></canvas></div></div>
+</section>
+
+<section>
+  <div class="sec-head"><div class="eyebrow">Ocena</div><h2>Parametr po parametrze</h2></div>
+  <div class="findings">
+    <div class="finding"><div class="k"><strong>Pojemność</strong><span class="pill warn">Utrata ok. 23%</span></div><p>BMS podaje 50,2 Ah przy nominalnych ~66 Ah dla pakietu 24 kWh (SOH 76,8%), czyli około 17,6 kWh brutto. Liczby wskazują jednoznacznie na pakiet 24 kWh: 218 Gids przy 97% SOC odpowiada około 225 Gids przy pełnym. Kontrola z przepływu ładunku daje około 45 Ah, a z energii około 16,6 kWh, przy okienku tylko 15% SOC i próbkach co 8 s. To w granicach dokładności metody, więc wartość BMS przyjmuję za wiarygodną.</p></div>
+    <div class="finding"><div class="k"><strong>Balans w spoczynku</strong><span class="pill good">Bardzo dobrze</span></div><p>13 mV na początku i na końcu logu, maksymalnie 24 mV przy prądzie poniżej 5 A. Najczęściej najniżej są pary 49 i 96, ale tylko około 8 mV pod średnią. Rezystory wyrównujące były aktywne na 90 z 96 par przez cały log. Po ładowaniu do około 97% to normalna praca BMS.</p></div>
+    <div class="finding"><div class="k"><strong>Ogniwa pod obciążeniem</strong><span class="pill good">Dobrze</span></div><p>Przy impulsach 208–247 A najsłabsza para była od 15 do 56 mV poniżej średniej, daleko od progu ostrzegawczego 100 mV. Powtarzają się pary 42, 80 i 30. Para 42 ma też najwyższą wyliczoną rezystancję, około 9% powyżej średniej. Warto je obserwować w kolejnych logach, szczególnie przy niskim SOC.</p></div>
+    <div class="finding"><div class="k"><strong>Rezystancja</strong><span class="pill info">Punkt odniesienia</span></div><p>Około 96 mΩ dla pakietu (83–96 mΩ zależnie od przejazdu) przy 20–21 °C i SOC 82–97%. Rozrzut rezystancji między parami to ±3%, co świadczy o równym starzeniu się ogniw. Nie mam pewnego wzorca dla tego pakietu, więc tę wartość traktuj jako punkt wyjścia do porównań w podobnej temperaturze.</p></div>
+    <div class="finding"><div class="k"><strong>Hx</strong><span class="pill info">Do śledzenia</span></div><p>65,6%, lekko rośnie w trakcie jazdy wraz z temperaturą. Ma sens jako trend w kolejnych logach, nie jako samodzielna ocena.</p></div>
+    <div class="finding"><div class="k"><strong>Temperatura</strong><span class="pill good">Dobrze</span></div><p>Czujniki T1, T2 i T4 mieściły się w 1,3 °C i wzrosły o 0,6–0,9 °C mimo serii pełnych przyspieszeń. Pakiet bez aktywnego chłodzenia nie miał tu żadnego problemu z ciepłem.</p></div>
+    <div class="finding"><div class="k"><strong>Historia ładowania</strong><span class="pill good">Łagodna</span></div><p>137 szybkich ładowań wobec 5684 ładowań AC. Pakiet był ładowany niemal wyłącznie w sposób, który go najmniej obciąża.</p></div>
+    <div class="finding"><div class="k"><strong>Akumulator 12 V</strong><span class="pill info">Do sprawdzenia</span></div><p>12,16 V na początku to odczyt przy włączonym zapłonie bez trybu READY, czyli pod obciążeniem, a nie w spoczynku. Po starcie przetwornica podała 14,4 V, prąd ładowania 12 V spadł z około 13 A do zera w ciągu około 8 minut, a potem napięcie zeszło do około 13 V. Tak działa sterowanie ładowaniem 12 V w Leafie. Nie widać problemu, ale ten log nie pozwala ocenić akumulatora.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><div class="eyebrow">Zestawienie</div><h2>Wartości z logu</h2></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Parametr</th><th style="text-align:right">Start</th><th style="text-align:right">Koniec</th><th style="text-align:right">Min</th><th style="text-align:right">Max</th></tr></thead>
+    <tbody>
+      <tr><td>SOC wg BMS (%)</td><td class="num">97,2</td><td class="num">82,1</td><td class="num">82,1</td><td class="num">97,2</td></tr>
+      <tr><td>Gids</td><td class="num">218</td><td class="num">181</td><td class="num">181</td><td class="num">218</td></tr>
+      <tr><td>Napięcie pakietu (V)</td><td class="num">396,1</td><td class="num">385,4</td><td class="num">361,6</td><td class="num">396,2</td></tr>
+      <tr><td>Prąd pakietu (A)</td><td class="num">−1,2</td><td class="num">−0,5</td><td class="num">−33,1</td><td class="num">247,3</td></tr>
+      <tr><td>Moc pakietu (kW)</td><td class="num">−0,5</td><td class="num">−0,2</td><td class="num">−12,3</td><td class="num">93,0</td></tr>
+      <tr><td>Najwyższa para ogniw (mV)</td><td class="num">4131</td><td class="num">4020</td><td class="num">3782</td><td class="num">4136</td></tr>
+      <tr><td>Najniższa para ogniw (mV)</td><td class="num">4118</td><td class="num">4007</td><td class="num">3741</td><td class="num">4119</td></tr>
+      <tr><td>Rozrzut ogniw (mV)</td><td class="num">13</td><td class="num">13</td><td class="num">13</td><td class="num">88*</td></tr>
+      <tr><td>Temperatura T1 / T2 / T4 (°C)</td><td class="num">20,0 / 21,3 / 20,1</td><td class="num">20,9 / 22,0 / 20,7</td><td class="num">19,8</td><td class="num">22,0</td></tr>
+      <tr><td>Otoczenie (°C)</td><td class="num">17,5</td><td class="num">13,0</td><td class="num">12,5</td><td class="num">17,5</td></tr>
+      <tr><td>Akumulator 12 V (V)</td><td class="num">12,16</td><td class="num">12,72</td><td class="num">12,08</td><td class="num">14,40</td></tr>
+      <tr><td>Hx (%)</td><td class="num">65,57</td><td class="num">65,84</td><td class="num">65,57</td><td class="num">65,84</td></tr>
+      <tr><td>Dystans od startu (km)</td><td class="num">0</td><td class="num">9</td><td class="num">—</td><td class="num">—</td></tr>
+    </tbody>
+  </table></div>
+  <span class="small">* Bez dwóch odczytów z chwil gwałtownej zmiany prądu (257 i 124 mV) (opis w sekcji o balansie ogniw).</span>
+</section>
+
+<section>
+  <div class="sec-head"><div class="eyebrow">Co dalej</div><h2>Zalecenia</h2></div>
+  <ol class="recs">
+    <li><div><b>Powtórz test przy niskim SOC, około 20–30%.</b> Ten log obejmuje tylko zakres 97–82%, gdzie ogniwa mają duży zapas napięcia. Słabsze pary, jeśli są, najlepiej widać pod obciążeniem przy niskim naładowaniu. Szczególnie zwróć wtedy uwagę na pary 42, 80 i 30.</div></li>
+    <li><div><b>Traktuj ten log jako punkt odniesienia po pełnym ładowaniu.</b> Zaczyna się tuż po odłączeniu ładowarki przy 97% SOC. Kolejne logi rób w tych samych warunkach i na tej samej trasie, żeby dało się je porównać.</div></li>
+    <li><div><b>Zapisuj log co 2–3 miesiące.</b> Śledź AHr, SOH, Hx, rezystancję i rozrzut ogniw. Pojedynczy pomiar mówi mniej niż kierunek zmian.</div></li>
+    <li><div><b>Porównuj rezystancję w podobnej temperaturze.</b> Obecne 96 mΩ zmierzono przy 20–21 °C. Zimą wynik będzie wyraźnie wyższy i nie będzie to oznaczać pogorszenia.</div></li>
+    <li><div><b>Zostań przy ładowaniu AC.</b> Na co dzień wystarczy około 80%. Przy tej pojemności pełne ładowanie bywa potrzebne, więc ustaw je tak, żeby kończyło się tuż przed wyjazdem, zamiast trzymać pakiet długo na 100%.</div></li>
+    <li><div><b>Uważaj na serię szybkich ładowań w upale.</b> Ten pakiet nie ma aktywnego chłodzenia. Kilka sesji QC pod rząd latem podnosi temperaturę, a wysoka temperatura najszybciej przyspiesza utratę pojemności.</div></li>
+    <li><div><b>Sprawdź akumulator 12 V po nocy.</b> Zmierz napięcie rano, przed włączeniem samochodu. Około 12,6 V lub więcej oznacza dobrze naładowany akumulator. Wyraźnie niższy wynik to powód do testu obciążeniowego.</div></li>
+  </ol>
+</section>
+
+<footer>
+  <span>Źródło: log z adaptera OBD, 192 próbki z września 2026, 22:19–22:45.</span>
+  <span>Ograniczenia: próbki co około 8 s, więc krótkie szczyty mogą być pominięte. Napięcia ogniw i prąd pochodzą z osobnych zapytań, dlatego wartości dla pojedynczych par pod obciążeniem są przybliżone. Pojemność kWh liczona jako AHr × 96 × 3,65 V. Raport nie zastępuje diagnostyki serwisowej.</span>
+</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const D = {"t":[0.0,0.15,0.317,0.583,0.717,0.85,1.017,1.167,1.583,1.783,1.9,2.05,2.217,2.383,3.3,3.467,3.6,3.733,3.867,4.0,4.133,4.267,4.4,4.55,4.683,4.817,4.95,5.083,5.233,5.367,5.75,5.85,5.983,6.117,6.283,6.417,6.55,6.7,6.85,6.983,7.117,7.267,7.333,7.45,7.6,7.833,7.967,8.117,8.25,8.383,8.5,8.633,8.767,8.9,9.033,9.167,9.3,9.417,9.55,9.683,9.817,9.95,10.083,10.217,10.35,10.5,10.65,10.767,10.9,11.033,11.167,11.283,11.417,11.55,11.683,11.8,11.933,12.05,12.183,12.317,12.433,12.567,12.683,12.817,12.933,13.05,13.183,13.317,13.45,13.567,13.683,13.817,13.933,14.067,14.2,14.317,14.45,14.567,14.7,14.817,14.95,15.083,15.217,15.35,15.5,15.617,15.75,15.883,16.0,16.133,16.267,16.383,16.517,16.65,16.767,16.883,17.0,17.15,17.267,17.417,17.567,17.7,17.833,17.95,18.083,18.2,18.333,18.467,18.583,18.717,18.85,18.967,19.1,19.217,19.35,19.467,19.6,19.733,19.85,19.983,20.1,20.217,20.367,20.483,20.617,20.733,20.867,20.983,21.117,21.25,21.367,21.5,21.617,21.75,21.867,22.0,22.117,22.25,22.383,22.5,22.633,22.75,22.883,23.0,23.133,23.25,23.383,23.5,23.633,23.75,23.883,24.0,24.133,24.267,24.383,24.517,24.633,24.767,24.9,25.017,25.15,25.283,25.4,25.533,25.65,25.783,25.917,26.05,26.167,26.3,26.383,26.433],"clock":["22:19:02","22:19:11","22:19:21","22:19:37","22:19:45","22:19:53","22:20:03","22:20:12","22:20:37","22:20:49","22:20:56","22:21:05","22:21:15","22:21:25","22:22:20","22:22:30","22:22:38","22:22:46","22:22:54","22:23:02","22:23:10","22:23:18","22:23:26","22:23:35","22:23:43","22:23:51","22:23:59","22:24:07","22:24:16","22:24:24","22:24:47","22:24:53","22:25:01","22:25:09","22:25:19","22:25:27","22:25:35","22:25:44","22:25:53","22:26:01","22:26:09","22:26:18","22:26:22","22:26:29","22:26:38","22:26:52","22:27:00","22:27:09","22:27:17","22:27:25","22:27:32","22:27:40","22:27:48","22:27:56","22:28:04","22:28:12","22:28:20","22:28:27","22:28:35","22:28:43","22:28:51","22:28:59","22:29:07","22:29:15","22:29:23","22:29:32","22:29:41","22:29:48","22:29:56","22:30:04","22:30:12","22:30:19","22:30:27","22:30:35","22:30:43","22:30:50","22:30:58","22:31:05","22:31:13","22:31:21","22:31:28","22:31:36","22:31:43","22:31:51","22:31:58","22:32:05","22:32:13","22:32:21","22:32:29","22:32:36","22:32:43","22:32:51","22:32:58","22:33:06","22:33:14","22:33:21","22:33:29","22:33:36","22:33:44","22:33:51","22:33:59","22:34:07","22:34:15","22:34:23","22:34:32","22:34:39","22:34:47","22:34:55","22:35:02","22:35:10","22:35:18","22:35:25","22:35:33","22:35:41","22:35:48","22:35:55","22:36:02","22:36:11","22:36:18","22:36:27","22:36:36","22:36:44","22:36:52","22:36:59","22:37:07","22:37:14","22:37:22","22:37:30","22:37:37","22:37:45","22:37:53","22:38:00","22:38:08","22:38:15","22:38:23","22:38:30","22:38:38","22:38:46","22:38:53","22:39:01","22:39:08","22:39:15","22:39:24","22:39:31","22:39:39","22:39:46","22:39:54","22:40:01","22:40:09","22:40:17","22:40:24","22:40:32","22:40:39","22:40:47","22:40:54","22:41:02","22:41:09","22:41:17","22:41:25","22:41:32","22:41:40","22:41:47","22:41:55","22:42:02","22:42:10","22:42:17","22:42:25","22:42:32","22:42:40","22:42:47","22:42:55","22:43:02","22:43:10","22:43:18","22:43:25","22:43:33","22:43:40","22:43:48","22:43:56","22:44:03","22:44:11","22:44:19","22:44:26","22:44:34","22:44:41","22:44:49","22:44:57","22:45:05","22:45:12","22:45:20","22:45:25","22:45:28"],"kw":[-0.46,-0.46,-0.17,-0.33,-0.49,-0.52,-0.33,-0.43,-0.42,-0.43,-0.49,0.0,-0.4,-0.49,0.0,-0.48,-0.49,-0.36,-0.43,-0.42,-0.46,-0.21,-0.49,-0.48,-0.39,-0.46,-0.43,-0.33,-0.33,-0.43,-0.39,-0.49,-0.43,-0.49,-0.43,-0.46,-0.42,-0.04,-0.36,-0.55,-0.36,0.06,-0.49,-0.42,-0.43,-0.42,-0.46,-0.37,-0.43,-0.43,-0.46,-0.43,-0.39,-0.45,-0.4,-0.39,-0.46,-0.37,-0.46,-0.46,-0.52,-0.33,0.56,0.53,4.66,6.37,6.26,5.64,6.92,-2.21,7.63,3.79,2.21,0.59,-1.17,-2.95,5.53,89.81,-4.59,-6.59,92.98,51.51,-3.15,-3.86,88.21,-10.07,10.03,-8.75,7.22,-2.36,-0.56,3.93,7.74,87.25,-5.33,90.38,-12.31,8.52,1.67,17.51,-2.95,10.11,10.95,11.28,10.72,10.78,21.69,10.99,9.73,8.37,-4.5,-3.2,9.57,-1.13,0.04,0.04,-0.05,-0.04,-0.05,0.29,-0.08,-0.02,0.08,-0.14,0.75,12.09,-1.78,-0.38,8.6,-8.2,13.98,6.16,-0.79,-0.7,3.45,75.96,-0.47,3.13,-2.79,87.27,6.61,0.43,87.07,10.12,6.52,-4.03,-8.13,0.37,6.39,-2.56,-1.26,3.44,3.67,11.79,86.76,6.48,21.63,19.37,8.51,10.24,12.0,8.28,8.27,10.22,8.3,-5.47,-0.81,13.76,10.32,10.59,6.97,3.7,1.96,9.1,-1.04,-0.26,-0.16,0.37,-0.13,1.67,-0.18,-0.64,-1.24,-0.04,1.17,0.88,1.66,0.83,0.83,-0.09,-0.3,-0.19],"amps":[-1.2,-1.2,-0.4,-0.8,-1.2,-1.3,-0.8,-1.1,-1.1,-1.1,-1.2,0.0,-1.0,-1.2,0.0,-1.2,-1.2,-0.9,-1.1,-1.1,-1.2,-0.5,-1.2,-1.2,-1.0,-1.2,-1.1,-0.8,-0.8,-1.1,-1.0,-1.2,-1.1,-1.2,-1.1,-1.2,-1.1,-0.1,-0.9,-1.4,-0.9,0.2,-1.2,-1.1,-1.1,-1.1,-1.2,-0.9,-1.1,-1.1,-1.2,-1.1,-1.0,-1.1,-1.0,-1.0,-1.2,-0.9,-1.2,-1.2,-1.3,-0.8,1.4,1.3,11.8,16.2,15.9,14.3,17.6,-5.6,19.4,9.6,5.6,1.5,-3.0,-7.5,14.0,242.0,-11.8,-16.8,247.3,141.1,-8.1,-9.9,240.3,-25.9,25.8,-22.7,18.8,-6.1,-1.5,10.1,20.0,239.1,-13.8,243.5,-33.1,22.2,4.4,46.1,-7.6,26.5,28.6,29.5,28.0,28.2,56.9,28.8,25.3,21.9,-11.7,-8.3,24.9,-2.9,0.1,0.1,-0.1,-0.1,-0.1,0.8,-0.2,-0.1,0.2,-0.3,1.9,31.4,-4.6,-1.0,22.2,-21.3,36.5,16.0,-2.0,-1.8,8.9,208.5,-1.2,8.2,-7.3,240.2,17.2,1.1,240.8,26.6,17.1,-10.6,-21.3,1.0,16.8,-6.7,-3.3,9.0,9.6,30.8,239.8,17.0,57.5,51.4,22.4,26.9,31.6,21.8,21.7,26.9,21.8,-14.3,-2.1,36.3,27.1,27.8,18.3,9.6,5.1,23.8,-2.7,-0.7,-0.4,1.0,-0.3,4.4,-0.5,-1.7,-3.2,-0.1,3.0,2.3,4.3,2.2,2.2,-0.2,-0.8,-0.5],"volts":[396.11,396.11,396.2,396.12,396.11,396.09,396.11,396.1,396.1,396.09,396.1,396.11,396.1,396.1,396.1,396.09,396.11,396.1,396.1,396.11,396.11,396.09,396.12,396.1,396.08,396.11,396.1,396.09,396.09,396.12,396.11,396.11,396.11,396.09,396.09,396.1,396.1,396.1,396.1,396.09,396.1,396.09,396.09,396.07,396.1,396.1,396.08,396.08,396.07,396.1,396.11,396.09,396.07,396.1,396.08,396.11,396.07,396.07,396.09,396.08,396.1,396.08,395.92,395.81,394.99,393.61,393.48,393.26,392.83,392.16,392.77,392.44,393.73,394.14,394.26,395.52,394.75,371.14,388.72,392.34,375.91,365.1,388.95,389.43,367.04,389.21,389.44,386.02,384.75,388.36,388.73,387.89,387.78,364.9,385.78,371.22,372.41,383.0,382.98,380.09,388.48,382.02,382.48,382.13,382.3,382.4,380.97,381.96,384.43,382.81,385.95,386.37,384.91,385.7,386.47,386.77,386.92,387.13,387.2,387.46,387.47,387.58,387.68,387.79,387.67,385.56,387.79,388.57,386.65,385.84,383.35,385.66,386.56,386.51,386.15,364.41,385.19,382.56,384.38,363.31,383.89,384.15,361.6,380.99,381.34,381.76,381.28,382.5,380.48,383.56,384.15,383.04,383.29,382.32,361.76,382.25,376.51,377.1,380.31,380.23,379.23,380.32,380.62,380.24,380.71,382.83,384.26,378.72,381.01,380.72,381.76,383.76,382.68,381.68,383.78,384.67,384.35,384.58,384.65,384.51,384.83,385.08,385.27,385.15,384.92,385.16,384.92,385.1,385.13,385.26,385.39,385.42],"soc":[97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.25,97.23,97.21,97.14,97.07,97.0,96.93,96.82,96.8,96.72,96.68,96.67,96.66,96.7,96.72,96.41,95.68,95.74,95.57,94.59,94.67,94.6,94.34,94.03,94.14,93.49,93.44,93.46,93.49,93.45,93.41,92.78,92.21,92.03,91.09,91.13,90.99,90.82,90.42,90.37,90.25,90.13,90.01,89.87,89.74,89.59,89.54,89.37,89.34,89.34,89.36,89.3,89.31,89.31,89.31,89.31,89.31,89.31,89.31,89.31,89.31,89.31,89.31,89.27,89.19,89.22,89.21,88.72,88.75,88.67,88.65,88.66,88.66,88.08,87.92,87.78,87.73,87.3,87.01,86.87,86.33,86.08,85.95,85.88,85.1,85.15,85.02,85.02,85.05,85.03,84.98,84.84,84.26,84.03,83.81,83.57,83.42,83.33,83.17,83.04,82.95,82.85,82.74,82.68,82.79,82.61,82.51,82.41,82.32,82.28,82.23,82.21,82.15,82.17,82.17,82.17,82.17,82.17,82.16,82.17,82.18,82.19,82.18,82.17,82.16,82.14,82.14,82.13,82.13,82.13],"diff":[13,13,13,13,13,13,13,13,13,13,17,13,13,13,13,13,13,13,13,13,13,13,13,17,17,13,13,13,13,13,13,13,13,13,13,17,13,18,17,17,13,13,13,17,13,13,13,13,13,17,13,13,18,17,13,13,13,13,13,13,13,13,15,13,14,16,15,15,14,14,15,25,18,18,24,13,19,56,26,18,88,257,14,17,53,20,33,16,21,17,17,17,23,58,13,88,124,16,14,18,14,14,18,19,18,18,18,19,22,14,18,18,18,19,19,21,18,18,17,22,18,19,18,18,22,24,18,16,17,18,23,20,20,17,17,27,13,18,14,36,31,18,41,24,18,18,14,13,16,14,13,14,17,16,39,45,19,22,18,20,16,18,16,17,14,14,13,25,17,18,16,17,17,17,13,18,14,14,13,18,17,17,17,13,17,13,17,13,17,13,13,13],"T1":[20.0,20.0,19.9,19.9,20.0,19.9,19.9,19.9,20.0,20.0,19.9,19.9,19.9,19.9,20.0,19.9,19.9,19.9,19.9,19.9,19.9,19.9,20.0,20.0,20.0,19.9,19.9,20.0,19.9,20.0,19.9,20.0,19.9,20.0,19.9,19.9,19.9,20.0,20.0,20.0,20.0,19.9,19.9,19.9,20.0,20.0,19.9,19.9,19.9,19.9,20.0,19.9,20.0,19.9,19.9,19.9,19.9,19.9,20.0,19.9,19.9,19.9,19.9,19.9,19.8,19.9,19.9,20.0,19.9,19.9,19.9,19.9,19.8,19.9,19.9,19.9,19.9,19.9,19.9,19.9,19.8,19.8,19.9,19.9,19.8,19.8,19.9,19.9,19.8,19.9,19.9,19.8,19.9,19.8,19.9,19.9,19.9,20.0,20.0,19.9,20.0,20.0,20.0,19.9,20.0,20.0,20.0,20.1,20.0,20.0,20.1,20.0,20.0,20.1,20.1,20.1,20.0,20.1,20.1,20.1,20.2,20.1,20.2,20.2,20.1,20.2,20.2,20.2,20.2,20.2,20.2,20.2,20.3,20.2,20.3,20.3,20.3,20.3,20.4,20.3,20.4,20.4,20.4,20.4,20.4,20.4,20.3,20.4,20.4,20.4,20.5,20.4,20.4,20.5,20.5,20.6,20.5,20.5,20.5,20.5,20.5,20.6,20.6,20.6,20.6,20.6,20.6,20.7,20.6,20.7,20.6,20.7,20.7,20.7,20.7,20.7,20.7,20.8,20.8,20.8,20.8,20.8,20.8,20.8,20.8,20.8,20.8,20.8,20.8,20.8,20.9,20.9],"T2":[21.3,21.3,21.3,21.4,21.3,21.3,21.4,21.3,21.3,21.3,21.4,21.4,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.4,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.4,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.2,21.3,21.3,21.3,21.3,21.3,21.3,21.2,21.3,21.3,21.3,21.2,21.3,21.2,21.3,21.2,21.2,21.3,21.3,21.3,21.2,21.3,21.2,21.2,21.2,21.3,21.2,21.3,21.2,21.3,21.2,21.3,21.3,21.3,21.3,21.2,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.3,21.4,21.3,21.4,21.3,21.3,21.4,21.4,21.4,21.4,21.4,21.4,21.4,21.4,21.4,21.4,21.4,21.4,21.5,21.4,21.5,21.5,21.5,21.5,21.5,21.5,21.5,21.5,21.5,21.5,21.6,21.6,21.5,21.6,21.5,21.5,21.6,21.6,21.6,21.6,21.6,21.6,21.6,21.7,21.6,21.6,21.6,21.6,21.7,21.7,21.7,21.7,21.8,21.7,21.7,21.7,21.7,21.7,21.7,21.8,21.8,21.8,21.8,21.8,21.8,21.9,21.8,21.8,21.9,21.8,21.9,21.9,21.9,21.9,21.9,21.9,21.9,21.9,21.9,22.0,21.9,21.9,22.0,22.0,22.0,22.0,22.0,22.0],"T4":[20.1,20.1,20.0,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.0,20.2,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.0,20.1,20.1,20.1,20.1,20.1,20.0,20.1,20.1,20.1,20.1,20.1,20.1,20.0,20.1,20.1,20.1,20.0,20.1,20.1,20.1,20.0,20.1,20.0,20.1,20.0,20.0,20.0,20.0,20.0,20.1,20.0,20.0,20.0,20.0,20.1,20.1,20.1,20.0,20.1,20.1,20.1,20.0,20.0,20.0,20.0,20.0,20.1,20.0,20.0,20.0,20.1,20.0,20.0,20.0,20.0,20.0,20.0,20.0,20.1,20.0,20.0,20.0,20.0,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.1,20.2,20.2,20.1,20.2,20.2,20.2,20.1,20.2,20.2,20.2,20.2,20.3,20.2,20.2,20.3,20.2,20.2,20.3,20.2,20.3,20.2,20.3,20.3,20.3,20.3,20.3,20.3,20.3,20.3,20.4,20.4,20.4,20.3,20.4,20.3,20.3,20.4,20.4,20.4,20.4,20.4,20.4,20.4,20.4,20.5,20.5,20.5,20.4,20.5,20.5,20.5,20.5,20.5,20.5,20.5,20.5,20.5,20.6,20.5,20.5,20.6,20.5,20.6,20.6,20.6,20.6,20.6,20.5,20.7,20.6,20.7,20.6,20.6,20.6,20.7,20.6,20.6,20.7,20.6,20.6,20.7,20.6,20.6,20.6,20.7,20.7],"amb":[17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.5,17.0,17.0,17.0,17.0,16.5,16.5,16.5,16.0,16.0,16.0,15.5,15.5,15.5,15.5,15.0,15.0,15.0,15.0,15.0,15.0,14.5,14.5,14.5,14.5,14.5,14.0,14.0,14.0,14.0,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.5,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,12.5,12.5,12.5,12.5,12.5,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0,13.0],"devRest":[-0.16,0.84,-0.16,-4.16,2.84,0.84,4.84,2.84,4.84,4.84,0.84,0.84,0.84,0.84,0.84,0.84,-3.16,0.84,-0.16,0.84,0.84,0.84,4.84,0.84,0.84,0.84,0.84,2.84,0.84,0.84,4.84,0.84,0.84,0.84,0.84,-3.16,0.84,0.84,4.84,0.84,0.84,0.84,4.84,0.84,0.84,0.84,0.84,2.84,-8.16,4.84,-3.16,-2.16,-3.16,0.84,-0.16,-3.16,4.84,-4.16,4.84,-3.16,-2.16,-3.16,-3.16,-2.16,0.84,0.84,0.84,-3.16,0.84,0.84,0.84,-3.16,-3.16,-2.16,-3.16,-2.16,0.84,0.84,4.84,2.84,0.84,0.84,-3.16,-2.16,-3.16,-3.16,-3.16,-2.16,-3.16,4.84,-4.16,-3.16,-3.16,0.84,-4.16,-8.16],"devPeak":[-23.26,-29.26,-9.26,-30.26,-16.26,-20.26,-14.26,-14.26,-4.26,-21.26,-4.26,-16.26,-17.26,-16.26,-9.26,-38.26,-8.26,-30.26,-9.26,-16.26,-36.26,-34.26,-23.26,-16.26,-9.26,-11.26,-17.26,-28.26,-4.26,-7.26,4.74,10.74,0.74,-11.26,13.74,1.74,4.74,-7.26,12.74,-6.26,-0.26,-7.26,12.74,6.74,13.74,-7.26,22.74,-14.26,11.74,14.74,10.74,-1.26,9.74,1.74,10.74,-6.26,15.74,1.74,28.74,8.74,8.74,6.74,0.74,7.74,13.74,10.74,1.74,6.74,4.74,1.74,18.74,-2.26,-8.26,16.74,22.74,21.74,31.74,10.74,23.74,-56.26,2.74,12.74,20.74,12.74,22.74,10.74,24.74,-5.26,6.74,14.74,27.74,13.74,15.74,23.74,28.74,1.74],"restCells":[4126,4127,4126,4122,4129,4127,4131,4129,4131,4131,4127,4127,4127,4127,4127,4127,4123,4127,4126,4127,4127,4127,4131,4127,4127,4127,4127,4129,4127,4127,4131,4127,4127,4127,4127,4123,4127,4127,4131,4127,4127,4127,4131,4127,4127,4127,4127,4129,4118,4131,4123,4124,4123,4127,4126,4123,4131,4122,4131,4123,4124,4123,4123,4124,4127,4127,4127,4123,4127,4127,4127,4123,4123,4124,4123,4124,4127,4127,4131,4129,4127,4127,4123,4124,4123,4123,4123,4124,4123,4131,4122,4123,4123,4127,4122,4118],"peakCells":[3830,3824,3844,3823,3837,3833,3839,3839,3849,3832,3849,3837,3836,3837,3844,3815,3845,3823,3844,3837,3817,3819,3830,3837,3844,3842,3836,3825,3849,3846,3858,3864,3854,3842,3867,3855,3858,3846,3866,3847,3853,3846,3866,3860,3867,3846,3876,3839,3865,3868,3864,3852,3863,3855,3864,3847,3869,3855,3882,3862,3862,3860,3854,3861,3867,3864,3855,3860,3858,3855,3872,3851,3845,3870,3876,3875,3885,3864,3877,3797,3856,3866,3874,3866,3876,3864,3878,3848,3860,3868,3881,3867,3869,3877,3882,3855],"vcorr":[391.09,391.09,391.18,391.1,391.09,391.07,391.09,391.08,391.08,391.07,391.08,391.09,391.08,391.08,391.08,391.07,391.09,391.08,391.08,391.09,391.09,391.07,391.1,391.08,391.06,391.09,391.08,391.07,391.07,391.1,391.09,391.09,391.09,391.07,391.07,391.08,391.08,391.08,391.08,391.07,391.08,391.07,391.07,391.05,391.08,391.08,391.06,391.06,391.05,391.08,391.09,391.07,391.05,391.08,391.06,391.09,391.05,391.05,391.07,391.06,391.08,391.06,390.9,390.8,390.0,388.68,388.61,388.45,388.08,387.51,388.13,387.87,389.19,389.61,389.74,390.96,390.17,366.83,385.03,388.6,372.31,362.34,386.12,386.66,364.49,386.92,387.06,384.2,382.97,386.56,386.91,386.1,386.03,363.68,385.04,370.63,372.62,383.18,383.28,380.54,389.26,382.85,383.41,383.16,383.44,383.65,382.33,383.45,385.96,384.49,387.65,388.08,386.59,387.44,388.2,388.5,388.65,388.86,388.93,389.19,389.2,389.31,389.41,389.52,389.4,387.32,389.62,390.38,388.46,388.07,385.55,387.93,388.85,388.79,388.43,367.18,388.1,385.59,387.45,366.74,387.57,387.95,365.86,385.47,385.92,386.41,386.59,387.77,385.85,388.94,389.5,388.41,388.7,387.85,367.78,388.47,382.92,383.71,387.05,387.05,386.18,387.38,387.76,387.46,388.03,390.19,391.53,386.14,388.52,388.32,389.43,391.46,390.43,389.44,391.6,392.47,392.15,392.38,392.45,392.31,392.63,392.88,393.06,392.93,392.71,392.96,392.73,392.92,392.96,393.09,393.22,393.25],"fit":{"a":311.8819449869793,"r":-0.09627372689737779,"c":0.850247568482886,"socMean":91.3431578125},"runs":[[10.08,16.77],[18.08,26.3]],"tmax":26.43,"peakA":247};
+const charts=[];
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+Chart.register({id:'bands',beforeDatasetsDraw(c,a,o){if(!o||!o.on)return;const {ctx,chartArea:ca,scales:{x}}=c;ctx.save();ctx.fillStyle=css('--band');D.runs.forEach(([s,e])=>{const x1=x.getPixelForValue(s),x2=x.getPixelForValue(e);ctx.fillRect(x1,ca.top,x2-x1,ca.bottom-ca.top);});ctx.restore();}});
+function clockAt(m){let i=0,b=1e9;D.t.forEach((v,j)=>{const d=Math.abs(v-m);if(d<b){b=d;i=j;}});return D.clock[i];}
+function base(yTitle,o={}){const ink2=css('--ink-2'),grid=css('--grid');
+  return {responsive:true,maintainAspectRatio:false,animation:false,parsing:false,interaction:{mode:o.mode||'index',intersect:false,axis:'x'},
+    plugins:{legend:{display:false},bands:{on:o.bands!==false},tooltip:{backgroundColor:css('--panel'),titleColor:css('--ink'),bodyColor:css('--ink-2'),borderColor:css('--line'),borderWidth:1,padding:10,titleFont:{family:css('--mono'),size:11},bodyFont:{family:css('--body'),size:12},boxWidth:8,boxHeight:8,usePointStyle:true,callbacks:o.cb||{title:it=>it.length?clockAt(it[0].parsed.x):''}}},
+    scales:{x:Object.assign({type:'linear',min:0,max:D.tmax,grid:{color:grid,drawTicks:false},border:{display:false},ticks:{color:ink2,font:{family:css('--mono'),size:10.5},padding:6,maxRotation:0,callback:v=>clockAt(v).slice(0,5)}},o.x||{}),
+      y:Object.assign({grid:{color:grid,drawTicks:false},border:{display:false},title:{display:!!yTitle,text:yTitle,color:ink2,font:{family:css('--body'),size:11}},ticks:{color:ink2,font:{family:css('--mono'),size:10.5},padding:6}},o.y||{})}};}
+const xy=ys=>D.t.map((t,i)=>({x:t,y:ys[i]}));
+const line=(label,ys,color,e={})=>Object.assign({label,data:xy(ys),borderColor:color,backgroundColor:color,borderWidth:2,pointRadius:0,pointHoverRadius:4,tension:0},e);
+function build(){charts.forEach(c=>c.destroy());charts.length=0;const [s1,s2,s3,s4]=['--s1','--s2','--s3','--s4'].map(css);
+  charts.push(new Chart(cPower,{type:'line',data:{datasets:[line('Moc pakietu',D.kw,s1,{tension:.15,fill:{target:{value:0},above:s1+'22',below:s3+'33'}})]},options:base('kW')}));
+  charts.push(new Chart(cVolts,{type:'line',data:{datasets:[line('Napięcie',D.volts,s1)]},options:base('V')}));
+  charts.push(new Chart(cSoc,{type:'line',data:{datasets:[line('SOC',D.soc,s1,{stepped:true})]},options:base('%')}));
+  charts.push(new Chart(cDiff,{type:'line',data:{datasets:[line('Rozrzut ogniw',D.diff,s2)]},options:base('mV',{y:{min:0}})}));
+  charts.push(new Chart(cAmps,{type:'line',data:{datasets:[line('Prąd',D.amps,s1)]},options:base('A')}));
+  charts.push(new Chart(cCells,{type:'line',data:{datasets:[
+    {label:'Spoczynek',data:D.devRest.map((y,i)=>({x:i+1,y})),borderColor:s3,backgroundColor:s3,borderWidth:2,pointRadius:2.5,pointHoverRadius:5},
+    {label:'Szczyt '+D.peakA+' A',data:D.devPeak.map((y,i)=>({x:i+1,y})),borderColor:s2,backgroundColor:s2,borderWidth:2,pointRadius:2.5,pointHoverRadius:5}]},
+    options:base('mV od średniej',{bands:false,x:{min:1,max:96,ticks:{stepSize:8,callback:v=>v,color:css('--ink-2'),font:{family:css('--mono'),size:10.5}}},
+      cb:{title:it=>it.length?'Para ogniw '+it[0].parsed.x:'',label:it=>it.dataset.label+': '+(it.parsed.y>0?'+':'')+it.parsed.y.toFixed(1)+' mV ('+(it.datasetIndex?D.peakCells:D.restCells)[it.parsed.x-1]+' mV)'}})}));
+  const f=D.fit,lo=Math.min(...D.amps),hi=Math.max(...D.amps);
+  const ir=base('V (SOC '+f.socMean.toFixed(1)+'%)',{bands:false,x:{min:Math.floor(lo/50)*50,max:Math.ceil(hi/50)*50,title:{display:true,text:'Prąd pakietu (A)',color:css('--ink-2')},ticks:{callback:v=>v,color:css('--ink-2'),font:{family:css('--mono'),size:10.5}}},
+    cb:{title:it=>it.length&&it[0].datasetIndex===0?D.clock[it[0].dataIndex]:'',label:it=>it.datasetIndex===0?it.parsed.x.toFixed(0)+' A · '+it.parsed.y.toFixed(1)+' V':'Dopasowanie ~'+Math.round(-f.r*1000)+' mΩ'}});
+  ir.interaction={mode:'nearest',intersect:true};
+  charts.push(new Chart(cIR,{type:'scatter',data:{datasets:[
+    {label:'Próbka',data:D.amps.map((a,i)=>({x:a,y:D.vcorr[i]})),backgroundColor:s1+'99',borderColor:css('--panel'),borderWidth:1,pointRadius:4,pointHoverRadius:6},
+    {label:'Dopasowanie',type:'line',data:[lo,hi].map(x=>({x,y:f.a+f.r*x+f.c*f.socMean})),borderColor:s2,borderWidth:2,pointRadius:0}]},options:ir}));
+  charts.push(new Chart(cTemp,{type:'line',data:{datasets:[line('T1',D.T1,s1),line('T2',D.T2,s2),line('T4',D.T4,s3),line('Otoczenie',D.amb,s4,{borderDash:[5,4]})]},options:base('°C')}));}
+if(window.Chart){Chart.defaults.font.family=css('--body');build();}
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',build);
+new MutationObserver(build).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>
+
+</body></html>
