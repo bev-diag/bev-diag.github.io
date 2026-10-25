@@ -98,3 +98,15 @@ button.btn:disabled { opacity: 0.6; cursor: progress; }
 .play span { display: flex; flex-direction: column; font-size: 1.35rem; font-weight: 600; line-height: 1.1; letter-spacing: .01em; }
 .play small { font-size: .62rem; font-weight: 500; letter-spacing: .08em; }
 .cta { display: block; }
+
+/* Supported cars */
+.cars { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 12px; }
+.car { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+.car-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.car h3 { margin: 0; font-size: 1.05rem; }
+.car .years { margin: 2px 0 8px; color: var(--muted); font-size: 0.9rem; font-weight: 600; }
+.car p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+.tag { font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.tag.ok { background: var(--accent); color: var(--accent-contrast); }
+.tag.exp { background: transparent; color: #a35f00; border: 1px solid #d99a3d; }
+@media (prefers-color-scheme: dark) { .tag.exp { color: #f0b45a; border-color: #b9802c; } }
